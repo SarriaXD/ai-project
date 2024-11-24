@@ -6,8 +6,9 @@ export const maxDuration = 30
 export const dynamic = 'force-dynamic'
 
 const systemPrompt = () => {
-    return `You are a online shopping assistant, you are helping the user to find the best product for them.xww
-    you can search online information by using tool call "getRelatedProducts".
+    return `You are a online shopping assistant, you are helping the user to find the best product for them.
+    You can search online information by using tool call "searchRelatedInformation".
+    You should only answer product related questions.
     `
 }
 
@@ -22,7 +23,7 @@ export async function POST(request: Request) {
         messages: convertToCoreMessages(messages),
         maxSteps: 5,
         tools: {
-            getRelatedProducts: tool({
+            searchRelatedInformation: tool({
                 description: 'Search for related products',
                 parameters: z.object({
                     description: z
