@@ -1,6 +1,7 @@
 import { convertToCoreMessages, streamText, tool } from 'ai'
 import { openai } from '@ai-sdk/openai'
 import { z } from 'zod'
+import searchRelatedInformation from '@/lib/service/utils/search-related-information-utils.ts'
 
 export const maxDuration = 30
 export const dynamic = 'force-dynamic'
@@ -32,19 +33,8 @@ export async function POST(request: Request) {
                             'the description of the product you want to search',
                         ),
                 }),
-                execute: async ({ description }) => {
-                    console.log('searching for products', description)
-                    await new Promise((resolve) => setTimeout(resolve, 1000))
-                    return [
-                        {
-                            name: '按摩棒',
-                            price: 100,
-                        },
-                        {
-                            name: '按摩棒2',
-                            price: 200,
-                        },
-                    ]
+                execute: async () => {
+                   return await searchRelatedInformation()
                 },
             }),
         },
