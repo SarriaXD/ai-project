@@ -8,6 +8,7 @@ interface MessageListProps {
 }
 
 const MessageList = ({ messages, isLoading }: MessageListProps) => {
+    console.log(messages)
     return (
         <div className="mx-auto flex max-w-[800px] flex-col gap-4">
             {messages.map((message, index) => (
