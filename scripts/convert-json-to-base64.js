@@ -21,12 +21,12 @@ const base64ServiceAccount = Buffer.from(
 console.log('Base64 encoded string:')
 console.log(base64ServiceAccount)
 
-// 将结果写入 .env.local 文件
-const envPath = join(__dirname, '..', '.env.local')
+// 将结果写入 .env 文件
+const envPath = join(__dirname, '..', '.env')
 appendFileSync(
     envPath,
     `\nFIREBASE_SERVICE_ACCOUNT_BASE64=${base64ServiceAccount}\n`
 )
 
-console.log('\nThe Base64 string has been added to your .env.local file.')
+console.log('\nThe Base64 string has been added to your .env file.')
 console.log('You can now use this in your Vercel environment variables.')

@@ -22,8 +22,7 @@ out
 *.sln
 *.sw?
 
-.env.local
+.env
 .vercel
-.env*.local
 
 service_account.json

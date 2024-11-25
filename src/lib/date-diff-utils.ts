@@ -62,7 +62,7 @@ function groupItemsByUpdateTime(items: Item[]): GroupedItems {
     // Sort each group by updateTime in descending order
     for (const key in groupedItems) {
         groupedItems[key as keyof GroupedItems].sort(
-            (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()
+            (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime(),
         )
     }
 
