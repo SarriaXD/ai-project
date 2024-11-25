@@ -1,5 +1,5 @@
 import { generateId } from 'ai'
-import { index, pgTable, text, varchar, vector } from 'drizzle-orm/pg-core'
+import { index, pgTable, varchar, vector } from 'drizzle-orm/pg-core'
 import { products } from '@/lib/db/schema/products.ts'
 
 export const embeddings = pgTable(
@@ -8,7 +8,6 @@ export const embeddings = pgTable(
         id: varchar('id', { length: 191 })
             .primaryKey()
             .$defaultFn(() => generateId()),
-        content: text('content').notNull(),
         productAsin: varchar('product_asin', { length: 191 }).references(
             () => products.asin,
             { onDelete: 'cascade' },
