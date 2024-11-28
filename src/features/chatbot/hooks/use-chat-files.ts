@@ -181,7 +181,7 @@ const useChatFiles = (onSubmit: HandleSubmit) => {
                 toast.error('Error removing file from server')
             }
         },
-        []
+        [user]
     )
 
     const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
