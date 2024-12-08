@@ -32,6 +32,6 @@ export const findRelevantProducts = async (userQuery: string) => {
         .innerJoin(products, eq(embeddings.productAsin, products.asin))  // 通过 asin 连接
         .where(gt(similarity, 0.5))
         .orderBy(desc(similarity))
-        .limit(4)
+        .limit(20)
 };
 
