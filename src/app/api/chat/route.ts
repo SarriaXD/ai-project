@@ -36,9 +36,7 @@ export async function POST(request: Request) {
                         ),
                 }),
                 execute: async (query) => {
-                    const result = await findRelevantProducts(query.description)
-                    console.log('query:', query, 'result', result)
-                    return result
+                    return findRelevantProducts(query.description)
                 },
             }),
         },

@@ -6,16 +6,24 @@ interface ToolcallItemProps {
 }
 
 const ToolcallItem = ({ toolInvocation }: ToolcallItemProps) => {
-    if (toolInvocation.toolName == 'searchRelatedInformation') {
-        return <SearchRelatedInformationItem toolInvocation={toolInvocation} />
+    if (toolInvocation.toolName == 'findRelevantProducts') {
+        return <FindRelevantProducts toolInvocation={toolInvocation} />
     } else {
         return null
     }
 }
 
-const SearchRelatedInformationItem = ({ toolInvocation }: ToolcallItemProps) => {
+const FindRelevantProducts = ({ toolInvocation }: ToolcallItemProps) => {
     if ('result' in toolInvocation) {
-        return null
+        return (
+            <div className="flex justify-start pl-10">
+                <div className="rounded-[20px] bg-[#2F2F2F] px-4 py-2">
+                    <p className="break-all text-lg font-bold italic text-white">
+                        {toolInvocation.result.length} product(s) found
+                    </p>
+                </div>
+            </div>
+        )
     } else {
         return (
             <div className="flex justify-start pl-10">
