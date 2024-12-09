@@ -32,9 +32,9 @@ export const findRelevantProducts = async (userQuery: string) => {
         })
         .from(embeddings)
         .innerJoin(products, eq(embeddings.productAsin, products.asin))  // 通过 asin 连接
-        .where(gt(similarity, 0.1))
+        .where(gt(similarity, 0.5))
         .orderBy(desc(similarity))
-        .limit(20)
+        .limit(100)
     console.log("userQuery:", userQuery, "result:", result)
     return result
 }
