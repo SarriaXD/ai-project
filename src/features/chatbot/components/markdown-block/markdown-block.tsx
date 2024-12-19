@@ -63,7 +63,7 @@ const MarkdownBlock = ({ markdown }: MarkdownBlockProps) => {
                 img(props: ImgHTMLAttributes<HTMLImageElement>) {
                     return (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img {...props} className={'!rounded-2xl'} alt={props.alt}/>
+                        <img {...props} className={'!rounded-2xl size-48 object-cover mt-4'} alt={props.alt}/>
                     )
                 },
             }}
