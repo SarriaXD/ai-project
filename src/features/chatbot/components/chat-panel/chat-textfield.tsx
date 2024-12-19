@@ -81,10 +81,9 @@ const InnerTextfield = ({
     const isSomeFilesUploading = filesState.files.some(
         (file) => file.isUploading
     )
-    const isEmpty = value.trim() === '' && filesState.files.length === 0
+    const isEmpty = value.trim() === ''
     const submitButtonDisabled = isSomeFilesUploading || isEmpty
     const inputRef = React.useRef<HTMLInputElement>(null)
-    console.log('submitButtonDisabled:', submitButtonDisabled)
 
     useEffect(() => {
         if (inputRef.current) {
