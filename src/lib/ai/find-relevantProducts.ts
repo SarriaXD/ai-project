@@ -16,8 +16,18 @@ const generateEmbedding = async (value: string): Promise<number[]> => {
     return embedding
 }
 
+const computeThreshold = (userQuery: string) => {
+    const words = userQuery.split(' ')
+    const threshold = words.length * 0.1
+    if (threshold > 0.5) {
+        return 0.5
+    }
+    return threshold
+}
+
 
 export const findRelevantProducts = async (userQuery: string) => {
+    console.log("userQuery:", userQuery)
     const userQueryEmbedded = await generateEmbedding(userQuery)
     const similarity = sql<number>`1 - (
     ${cosineDistance(
@@ -32,10 +42,10 @@ export const findRelevantProducts = async (userQuery: string) => {
         })
         .from(embeddings)
         .innerJoin(products, eq(embeddings.productAsin, products.asin))  // 通过 asin 连接
-        .where(gt(similarity, 0.5))
+        .where(gt(similarity, computeThreshold(userQuery)))  // 过滤相似度
         .orderBy(desc(similarity))
         .limit(100)
-    console.log("userQuery:", userQuery, "result:", result)
+    console.log("userQuery:", userQuery, "result:", result.length)
     return result
 }
 
