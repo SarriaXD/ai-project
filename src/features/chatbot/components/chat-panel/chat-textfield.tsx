@@ -81,7 +81,11 @@ const InnerTextfield = ({
     const isSomeFilesUploading = filesState.files.some(
         (file) => file.isUploading
     )
+    const isEmpty = value.trim() === '' && filesState.files.length === 0
+    const submitButtonDisabled = isSomeFilesUploading || isEmpty
     const inputRef = React.useRef<HTMLInputElement>(null)
+    console.log('submitButtonDisabled:', submitButtonDisabled)
+
     useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus()
@@ -92,7 +96,7 @@ const InnerTextfield = ({
             className="flex items-center gap-2 md:gap-4"
             onSubmit={async (event) => {
                 event.preventDefault()
-                if (isSomeFilesUploading || !value) {
+                if (submitButtonDisabled) {
                     return
                 }
                 onSubmit(event)
@@ -138,8 +142,8 @@ const InnerTextfield = ({
             {!isLoading && (
                 <button
                     type="submit"
-                    className={`rounded-full p-2 text-[#2F2F2F] ${value && !isSomeFilesUploading ? 'bg-white' : 'bg-[#676767]'}`}
-                    disabled={isSomeFilesUploading}
+                    className={`rounded-full p-2 text-[#2F2F2F] ${submitButtonDisabled ? 'bg-[#676767]' : 'bg-white'}`}
+                    disabled={submitButtonDisabled}
                 >
                     <ArrowUp className="size-4 md:size-5" />
                 </button>
